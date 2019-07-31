@@ -21,7 +21,7 @@ final class Version20190726090025 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-
+        $this->addSql('ALTER TABLE utilisateur ADD id_parte_id INT DEFAULT NULL, ADD nom VARCHAR(255) NOT NULL, ADD prenom VARCHAR(255) NOT NULL, ADD email VARCHAR(255) NOT NULL, ADD tel DOUBLE PRECISION NOT NULL, ADD profil VARCHAR(255) NOT NULL, ADD status VARCHAR(255) NOT NULL');
         $this->addSql('CREATE TABLE compte (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, code_bank INT NOT NULL, num_comp VARCHAR(255) NOT NULL, iban VARCHAR(255) NOT NULL, bic VARCHAR(255) NOT NULL, montant DOUBLE PRECISION NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE partenaire ADD id_compte_id INT NOT NULL, ADD reg_com VARCHAR(255) NOT NULL, ADD localisation VARCHAR(255) NOT NULL, ADD domaine VARCHAR(255) NOT NULL, DROP rc, DROP denom_social, DROP localite, DROP siege_social, DROP form_juri, DROP activite_prin, DROP annee_creation, CHANGE ninea ninea DOUBLE PRECISION NOT NULL');
         $this->addSql('ALTER TABLE partenaire ADD CONSTRAINT FK_32FFA37372F0DA07 FOREIGN KEY (id_compte_id) REFERENCES compte (id)');
