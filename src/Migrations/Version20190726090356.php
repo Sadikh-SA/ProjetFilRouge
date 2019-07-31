@@ -37,11 +37,8 @@ final class Version20190726090356 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE partenaire DROP FOREIGN KEY FK_32FFA37372F0DA07');
-        $this->addSql('DROP TABLE compte');
-        $this->addSql('DROP INDEX UNIQ_32FFA37372F0DA07 ON partenaire');
         $this->addSql('ALTER TABLE partenaire ADD rc VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, ADD denom_social VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, ADD localite VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, ADD siege_social VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, ADD form_juri VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, ADD activite_prin VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, ADD annee_creation DATE NOT NULL, DROP id_compte_id, DROP reg_com, DROP localisation, DROP domaine, CHANGE ninea ninea INT NOT NULL');
         $this->addSql('ALTER TABLE utilisateur DROP FOREIGN KEY FK_1D1C63B36B2814EB');
-        $this->addSql('DROP INDEX IDX_1D1C63B36B2814EB ON utilisateur');
         $this->addSql('ALTER TABLE utilisateur DROP id_parte_id, DROP nom, DROP prenom, DROP email, DROP tel, DROP profil, DROP status');
     }
 }
